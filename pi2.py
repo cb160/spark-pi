@@ -4,7 +4,7 @@
 #
 #------------------------------------
 import argparse
-from random import random
+from random import random, seed
 import time
 from operator import add
 from pyspark import SparkContext
@@ -18,6 +18,8 @@ def f(_):
 # Uses Spark to parallelise estimation of PI using f(), with specified number of calls
 # distributed over the specified number of partitions
 def test_run(desc, test_num, n, partitions, sc, results):
+
+    seed()
 
     test_data = sc.parallelize(xrange(1, n + 1), partitions)
 
